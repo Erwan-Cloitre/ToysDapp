@@ -1,0 +1,482 @@
+.connect {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+}
+
+.btn {
+  background-color: var(--tw-color1);
+  outline: none;
+  border: none;
+  color: var(--white);
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 1.25rem;
+  font-weight: 100;
+  cursor: pointer;
+
+  transition: background-color 300ms ease-in-out;
+  transform-origin: center;
+}
+
+.btn:hover {
+  background-color: var(--tw-color1-hover);
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.address {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 0 24px;
+}
+
+.page {
+  width: inherit;
+  border-radius: 20px;
+  border: 1px solid var(--tw-color1);
+  padding: 16px;
+}
+
+.pageContainer {
+  max-width: 600px;
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-direction: row;
+  gap: 2%;
+  padding: 1rem;
+}
+
+.arrowButton {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.owner {
+  font-size: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.divButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mainButton {
+  cursor: pointer;
+  display: inline-flex;
+  appearance: none;
+  align-items: center;
+  -webkit-box-align: center;
+  justify-content: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  line-height: 1.2;
+  font-weight: 100;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  height: 3rem;
+  min-width: 3rem;
+  font-size: 1rem;
+  background: #e5e5ea;
+  background: #EA3A60;
+  color: #fff;
+  width: 220px;
+  text-align: center;
+  border-radius: 9999px;
+  border-style: none;
+}
+
+.mainButton:hover {
+  opacity: 0.8;
+}
+
+.ourCollection {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.collectionContainer {
+  width: 1200px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.h1 {
+  margin-bottom: 0px;
+}
+
+.explain {
+  font-size: 1.125rem;
+  max-width: 1200px;
+}
+
+.purple {
+  color: #9f2c9d;
+}
+
+.divider {
+  width: 50%;
+  border-color: #EA3A60;
+  opacity: 0.5;
+  box-shadow: 5px 2.5px 2.5px rgba(234, 58, 96, 0.5);
+}
+
+.smallDivider {
+  width: 25%;
+  border-color: grey;
+  margin-top: 64px;
+  opacity: 0.25;
+}
+
+.textInput {
+  width: 75%;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 8px;
+  color: #fff;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.imageInput {
+  width: 100%;
+  height: 100px;
+  border: 1px dashed grey;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  cursor: pointer;
+}
+
+.contractBoxGrid {
+  width: 1200px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1%;
+  flex-wrap: wrap;
+}
+
+.contractBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  width: 19%;
+  height: 200px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 16px;
+  padding-top: 25px;
+}
+
+/* Between 700px and 900px */
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  .contractBoxGrid {
+    gap: 2%;
+  }
+
+  .contractBox {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .contractBoxGrid {
+    gap: 2%;
+  }
+
+  .contractBox {
+    width: 98%;
+  }
+}
+
+.nftBoxGrid {
+  width: 1200px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  flex-wrap: wrap;
+}
+
+.nftBox {
+  border-radius: 16px;
+  border: 1px solid #EA3A60;
+  width: 25%;
+  min-height: 200px;
+  background: rgba(234, 58, 96, 0.9);
+  color: white;
+  box-shadow: 10px 5px 5px rgba(234, 58, 96, 0.5);
+  margin-bottom: 10px;
+}
+
+.optionSelectBox {
+  border-radius: 16px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 48%;
+  min-height: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+
+.selectBoxTitle {
+  font-size: 1.75rem;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.tokenName{
+  margin-bottom: 0px;
+  font-weight: 100;
+}
+
+/* Between 1200 and 800 */
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+  .nftBox {
+    width: 49%;
+    margin-top: 16px;
+    margin-bottom: 0px;
+  }
+}
+
+/* beneath 800
+*/
+@media only screen and (max-width: 800px) {
+  .nftBoxGrid {
+    justify-content: center;
+  }
+  .nftBox {
+    width: 80%;
+    margin-top: 16px;
+    margin-bottom: 0px;
+  }
+  .optionSelectBox {
+    width: 90%;
+    margin-top: 16px;
+  }
+}
+
+.tokenGrid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1%;
+  width: 1600px;
+  max-width: 95vw;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.tokenItem {
+  width: 35%;
+  height: 120px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #EA3A60;
+  gap: 16px;
+  background: rgba(234, 58, 96, 0.9);
+  box-shadow: 10px 5px 5px rgba(234, 58, 96, 0.5);
+}
+
+.tokenLabel {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: 100;
+  color: white;
+}
+.valueFont {
+  font-weight: 100;
+}
+
+/* Second tokenLabel item */
+
+.tokenValue {
+  font-size: 1.3rem;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  font-weight: 100;
+  color: white;
+}
+
+/* On Mobile, make tokenGrid 100% width */
+@media only screen and (max-width: 850px) {
+  .tokenItem {
+    width: 90%;
+    margin-top: 12px;
+  }
+}
+
+/* Screen less than 630, then hide .center */
+@media only screen and (max-width: 630px) {
+  .center {
+    display: none;
+  }
+}
+
+.spacerTop {
+  margin-top: 16px;
+}
+
+.bigSpacerTop {
+  margin-top: 32px;
+}
+
+.spacerBottom {
+  margin-bottom: 16px;
+}
+
+.cardName {
+  margin-bottom: 0px;
+}
+
+.cardDescription {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.headerLogo {
+  width: 135px;
+  cursor: pointer;
+}
+
+.verticalSpacer {
+  color: grey;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.codeSnippet {
+  text-align: start;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  width: 900px;
+  max-width: 95vw;
+  background-color: #282c34;
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+.noUnderline {
+  text-decoration: none;
+}
+
+.detailPageContainer {
+  max-width: 800px;
+}
+
+.detailPageHr {
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.lightPurple {
+  color: #e011a7;
+}
+
+.nftMedia {
+  width: 100%;
+  max-height: 300px;
+  border-radius: 16px;
+}
+
+.amountToClaim {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.noGapBottom {
+  margin-bottom: 0px;
+}
+
+.blueLeft{
+  width: 30vw;
+  position: absolute;
+  left: 0;
+  top: 1;
+  z-index: -1;
+}
+
+.yellowRight{
+  width: 28vw;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+
+.checkbox {
+  font-size: 1.5em;
+}
+
+.checkbox input[type="checkbox"] {
+  opacity: 1;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  margin-top: 25px;
+}
+
+.checkbox input[type="checkbox"]:checked {
+  display: none;
+}
+
+.titleSelected{
+ margin: .8rem 0;
+}
+
+.boxSelected{
+  margin-bottom: 2rem;
+ }
