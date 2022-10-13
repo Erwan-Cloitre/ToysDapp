@@ -13,7 +13,6 @@ import styles from "../styles/Home.module.css";
 import Image from 'next/image'
 import axios from 'axios';
 
-const nftDropContractAddress = "0xC3C62E97c85EA5D8D2EdC39034e9dfc6452a50D1";
 const tokenContractAddress = "0xf70A188D3ADF2d852f35fE139407287966c5c34f";
 const stakingContractAddress = "0xE5a1e410BC203391806aAe4443155959F39Bc76C";
 
@@ -23,14 +22,10 @@ const Home: NextPage = () => {
   const connectWithMetamask = useMetamask();
 
   // Contract Hooks
-  const nftDropContract = useContract(nftDropContractAddress);
   const tokenContract = useContract(tokenContractAddress);
   const erc20 = getErc20(tokenContract.contract)
 
   const { contract, isLoading } = useContract(stakingContractAddress);
-
-  // Load hold NFTs
-  const { data: ownedNfts } = useOwnedNFTs(nftDropContract.contract, address);
 
   // Load Balance of Token
   const { data: tokenBalance } = useTokenBalance(erc20, address);
@@ -55,7 +50,6 @@ const Home: NextPage = () => {
   async function availableRewards(id: any) {
     const cr = await contract?.call("availableRewards", id);
     setClaimableRewards(cr._hex);
-    console.log(ownedNfts);
   }
 
   async function batchClaimRewards(arr: any[]) {
@@ -177,7 +171,7 @@ const Home: NextPage = () => {
             </button>
           <div className={styles.nftBoxGrid}>
           {listNft?.map((toy: any) => (
-          <div className={styles.nftBox}  key={toy}>
+          <div className={styles.nftBox}  key={toy.name}>
             <img className={styles.nftMedia} src={toy.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
             <h3 className={styles.tokenName}>{toy.name}</h3>
             <p className={styles.tokenValue}>
