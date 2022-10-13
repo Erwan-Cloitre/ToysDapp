@@ -58,7 +58,7 @@ const Home: NextPage = () => {
     console.log(ownedNfts);
   }
 
-  async function batchClaimRewards(arr: string[]) {
+  async function batchClaimRewards(arr: any[]) {
     const batchClaim = await contract?.call("batchClaimRewards", arr);
   }
 
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
     console.log(arr);
   }
 
-  async function claimRewards(id: BigNumber) {
+  async function claimRewards(id: any) {
     const claim = await contract?.call("claimRewards", id);
   }
     
