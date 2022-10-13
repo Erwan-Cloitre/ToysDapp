@@ -162,7 +162,7 @@ const Home: NextPage = () => {
 
           <h2>Your ToyMories</h2>
           {listNft.map((reptile) => (
-          <div>
+          <div key={reptile}>
             <p>{reptile.name}</p>
             <img src={reptile.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
           </div>))}
