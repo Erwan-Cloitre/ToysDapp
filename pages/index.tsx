@@ -167,7 +167,7 @@ const Home: NextPage = () => {
                 setIsShown(false);
               }}
             >
-              Show
+              Show my toy mories
             </button>
           <div className={styles.nftBoxGrid}>
           {listNft?.map((toy: any) => (
