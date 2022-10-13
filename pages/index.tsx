@@ -166,7 +166,7 @@ const Home: NextPage = () => {
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
           <h2>Your ToyMories</h2>
-          {listNft.map((reptile: any) => (
+          {listNft?.map((reptile: any) => (
           <div key={reptile}>
             <p>{reptile.name}</p>
             <img src={reptile.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
