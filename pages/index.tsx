@@ -38,7 +38,7 @@ const Home: NextPage = () => {
   ///////////////////////////////////////////////////////////////////////////
   // Custom contract functions
   ///////////////////////////////////////////////////////////////////////////
-  const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
+  const [claimableRewards, setClaimableRewards] = useState<any>();
 
   const [claimableRewardsTokenID, setClaimableRewardsTokenID] = useState<any>();
 
@@ -87,14 +87,15 @@ const Home: NextPage = () => {
   axios
     .request(options)
     .then(function (response) {
-      //console.log(response.data);
+      //console.log(response.data.total);
       //console.log(response.data.result[0].token_uri);
       //const nfts = [];
       //for (let key in response.data.result) {
        // nfts.push({...response.data.result[key], id: key});
       //}
       //console.log(nfts);
-      for (let i = 0; i < 2; i++) {
+      //const longueur = response.data.length();
+      for (let i = 0; i < response.data.total; i++) {
         const metadata = JSON.parse(response.data.result[i].metadata);
         listNft.push(metadata);
         setListNft([...listNft]);
