@@ -45,7 +45,7 @@ const Home: NextPage = () => {
 
   const [arr, setArr] = useState<string[]>([]);
 
-  const [listNft, setListNft] = useState<any>();
+  const [listNft, setListNft] = useState<string[]>([]);
  
   ///////////////////////////////////////////////////////////////////////////
   // Write Functions
