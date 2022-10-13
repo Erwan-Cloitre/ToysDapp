@@ -292,7 +292,7 @@
     justify-content: center;
   }
   .nftBox {
-    width: 80%;
+    width: 90%;
     margin-top: 16px;
     margin-bottom: 0px;
   }
@@ -425,7 +425,6 @@
 
 .nftMedia {
   width: 100%;
-  max-height: 300px;
   border-radius: 16px;
 }
 
@@ -479,4 +478,8 @@
 
 .boxSelected{
   margin-bottom: 2rem;
+ }
+
+ .ShowButton:checked{
+  display: none;
  }

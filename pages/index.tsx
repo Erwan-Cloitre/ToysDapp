@@ -1,5 +1,4 @@
 import {
-  ThirdwebNftMedia,
   useAddress,
   useMetamask,
   useTokenBalance,
@@ -41,16 +40,19 @@ const Home: NextPage = () => {
   ///////////////////////////////////////////////////////////////////////////
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
-  const [claimableRewardsTokenID, setClaimableRewardsTokenID] = useState<BigNumber>();
+  const [claimableRewardsTokenID, setClaimableRewardsTokenID] = useState<any>();
 
   const [arr, setArr] = useState<string[]>([]);
 
   const [listNft, setListNft] = useState<string[]>([]);
+
+  const [isShown, setIsShown] = useState(true);
+
  
   ///////////////////////////////////////////////////////////////////////////
   // Write Functions
   ///////////////////////////////////////////////////////////////////////////
-  async function availableRewards(id: BigNumber) {
+  async function availableRewards(id: any) {
     const cr = await contract?.call("availableRewards", id);
     setClaimableRewards(cr._hex);
     console.log(ownedNfts);
@@ -96,7 +98,7 @@ const Home: NextPage = () => {
         const metadata = JSON.parse(response.data.result[i].metadata);
         listNft.push(metadata);
         setListNft([...listNft]);
-        console.log(listNft);
+        //console.log(listNft);
         //console.log(metadata.image);
       }
     })
@@ -104,11 +106,7 @@ const Home: NextPage = () => {
       console.error(error);
     });
   }
-
-  interface listNft {
-    image: number;
-    name: string;
-}
+  
 
   if (isLoading) {
     return <div>Loading</div>;
@@ -145,65 +143,65 @@ const Home: NextPage = () => {
         <>
           <div className={styles.tokenGrid}>
           <div className={styles.tokenItem}>
-              <h3 className={styles.tokenLabel}>Claimable Rewards of TOYS#{!claimableRewardsTokenID ? "?" : Number(claimableRewardsTokenID)}</h3>
+              <h3 className={styles.tokenLabel}>Claimable Rewards of TOY MORIES#{!claimableRewardsTokenID ? "?" : Number(claimableRewardsTokenID)}</h3>
               <p className={styles.tokenValue}>
                 <b className={styles.valueFont}>
                   {!claimableRewards
                   ? "?"
                   : Number(claimableRewards)}
                 </b>{" "}
-                ${tokenBalance?.symbol}
+                ${tokenBalance?.name}
               </p>
             </div>
             <div className={styles.tokenItem}>
               <h3 className={styles.tokenLabel}>Current Balance</h3>
               <p className={styles.tokenValue}>
-                <b className={styles.valueFont}>{tokenBalance?.displayValue}</b> ${tokenBalance?.symbol}
+                <b className={styles.valueFont}>{tokenBalance?.displayValue}</b> ${tokenBalance?.name}
               </p>
             </div>
           </div>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
-          <h2>Your ToyMories</h2>
-          {listNft?.map((reptile: any) => (
-          <div key={reptile}>
-            <p>{reptile.name}</p>
-            <img src={reptile.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
-          </div>))}
+          <h2 className={styles.titleSelected}>Your ToyMories</h2>
+          <button
+              style={{display: isShown ? 'block' : 'none'}}
+              className={`${styles.mainButton} ${styles.spacerTop}`}
+              onClick={() => {
+                show();
+                setIsShown(false);
+              }}
+            >
+              Show
+            </button>
           <div className={styles.nftBoxGrid}>
-            {ownedNfts?.map((nft) => (
-              <div className={styles.nftBox} key={nft.metadata.id.toString()}>
-                <ThirdwebNftMedia
-                  metadata={nft.metadata}
-                  className={styles.nftMedia}
-                />
-                <h3 className={styles.tokenName}>{nft.metadata.name}</h3>
-                <p className={styles.tokenValue}>
+          {listNft?.map((toy: any) => (
+          <div className={styles.nftBox}  key={toy}>
+            <img className={styles.nftMedia} src={toy.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
+            <h3 className={styles.tokenName}>{toy.name}</h3>
+            <p className={styles.tokenValue}>
               </p>
               <div className={styles.divButton}>
-              <button
+            <button
                   className={`${styles.mainButton} ${styles.spacerTop}`}
-                  onClick={() => {availableRewards(nft.metadata.id);
-                                  setClaimableRewardsTokenID(nft.metadata.id);
+                  onClick={() => {availableRewards(toy.name.replace('ToyMories #', ''));
+                   setClaimableRewardsTokenID(toy.name.replace('ToyMories #', ''));
                   }}
                 >
                   See your available $TOYS
                 </button>
                 <button
                   className={`${styles.mainButton} ${styles.spacerTop}`}
-                  onClick={() => claimRewards(nft.metadata.id)}
+                  onClick={() => claimRewards(toy.name.replace('ToyMories #', ''))}
                 >
                   Claim $TOYS
                 </button>
                 <div className={styles.checkbox}>
-                  <input type="checkbox" id="cgv" name="cgv" onChange={() => batchClaimRewardsList(nft.metadata.id.toString())}/>
+                  <input type="checkbox" id="cgv" name="cgv" onChange={() => batchClaimRewardsList(toy.name.replace('ToyMories #', ''))}/>
                 </div>
                 </div>
-              </div>
-            ))}
-            <div>
-    </div>
+          </div>
+          ))}
           </div>
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
           <div className={styles.boxSelected}>
@@ -213,12 +211,6 @@ const Home: NextPage = () => {
               onClick={() => batchClaimRewards(arr)}
             >
               Claim Selected $TOYS
-            </button>
-            <button
-              className={`${styles.mainButton} ${styles.spacerTop}`}
-              onClick={() => show()}
-            >
-              Show
             </button>
           </div>
         </>
