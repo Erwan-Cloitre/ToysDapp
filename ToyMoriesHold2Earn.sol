@@ -128,15 +128,15 @@ contract ToyMoriesHold2Earn is ReentrancyGuard {
         returns (uint256 _rewards)
     {
         if (tokens[_tokenId].timeOfLastUpdate == 0 && block.timestamp <= Deadline) {
-             return (((block.timestamp - InitTime) * rewardsPerDay) / 86400);
+             return (((block.timestamp - InitTime) * rewardsPerDay) / 60);
         } else if (tokens[_tokenId].timeOfLastUpdate == 0 && block.timestamp > Deadline){
-           return (((Deadline - InitTime) * rewardsPerDay) / 86400);
+           return (((Deadline - InitTime) * rewardsPerDay) / 60);
         } else if (block.timestamp > Deadline && tokens[_tokenId].timeOfLastUpdate > 0){
-           return (((Deadline - tokens[_tokenId].timeOfLastUpdate) * rewardsPerDay) / 86400);
+           return (((Deadline - tokens[_tokenId].timeOfLastUpdate) * rewardsPerDay) / 60);
         } else if (block.timestamp > Deadline && tokens[_tokenId].timeOfLastUpdate > Deadline){
            return 0;
         }else {
-           return (((block.timestamp - tokens[_tokenId].timeOfLastUpdate) * rewardsPerDay) / 86400);
+           return (((block.timestamp - tokens[_tokenId].timeOfLastUpdate) * rewardsPerDay) / 60);
         }
     }
 }

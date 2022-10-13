@@ -12,6 +12,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import Image from 'next/image'
+import axios from 'axios';
 
 const nftDropContractAddress = "0xC3C62E97c85EA5D8D2EdC39034e9dfc6452a50D1";
 const tokenContractAddress = "0xf70A188D3ADF2d852f35fE139407287966c5c34f";
@@ -43,6 +44,8 @@ const Home: NextPage = () => {
   const [claimableRewardsTokenID, setClaimableRewardsTokenID] = useState<BigNumber>();
 
   const [arr, setArr] = useState<string[]>([]);
+
+  const [listNft, setListNft] = useState<string[]>([]);
  
   ///////////////////////////////////////////////////////////////////////////
   // Write Functions
@@ -65,6 +68,41 @@ const Home: NextPage = () => {
 
   async function claimRewards(id: BigNumber) {
     const claim = await contract?.call("claimRewards", id);
+  }
+    
+  const options = {
+    method: 'GET',
+    url: `https://deep-index.moralis.io/api/v2/${address}/nft`,
+    params: {
+      chain: 'eth',
+      format: 'decimal',
+      token_addresses: '0xC3C62E97c85EA5D8D2EdC39034e9dfc6452a50D1'
+    },
+    headers: {accept: 'application/json', 'X-API-Key': 'Q4zKEBeWXo97V8JG45sXlmwoQmSv4nCoKPm9pbAR3qCjGnZK7mqYnb51SyYoqCh4'}
+  };
+  
+  async function show() {
+  axios
+    .request(options)
+    .then(function (response) {
+      //console.log(response.data);
+      //console.log(response.data.result[0].token_uri);
+      //const nfts = [];
+      //for (let key in response.data.result) {
+       // nfts.push({...response.data.result[key], id: key});
+      //}
+      //console.log(nfts);
+      for (let i = 0; i < 2; i++) {
+        const metadata = JSON.parse(response.data.result[i].metadata);
+        listNft.push(metadata);
+        setListNft([...listNft]);
+        console.log(listNft);
+        //console.log(metadata.image);
+      }
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
   }
 
   if (isLoading) {
@@ -123,6 +161,11 @@ const Home: NextPage = () => {
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
           <h2>Your ToyMories</h2>
+          {listNft.map((reptile) => (
+          <div>
+            <p>{reptile.name}</p>
+            <img src={reptile.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
+          </div>))}
           <div className={styles.nftBoxGrid}>
             {ownedNfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
@@ -154,6 +197,8 @@ const Home: NextPage = () => {
                 </div>
               </div>
             ))}
+            <div>
+    </div>
           </div>
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
           <div className={styles.boxSelected}>
@@ -163,6 +208,12 @@ const Home: NextPage = () => {
               onClick={() => batchClaimRewards(arr)}
             >
               Claim Selected $TOYS
+            </button>
+            <button
+              className={`${styles.mainButton} ${styles.spacerTop}`}
+              onClick={() => show()}
+            >
+              Show
             </button>
           </div>
         </>
