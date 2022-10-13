@@ -45,7 +45,7 @@ const Home: NextPage = () => {
 
   const [arr, setArr] = useState<string[]>([]);
 
-  const [listNft, setListNft] = useState<string[]>([]);
+  const [listNft, setListNft] = useState<any>();
  
   ///////////////////////////////////////////////////////////////////////////
   // Write Functions
@@ -105,6 +105,11 @@ const Home: NextPage = () => {
     });
   }
 
+  interface listNft {
+    image: number;
+    name: string;
+}
+
   if (isLoading) {
     return <div>Loading</div>;
   }
@@ -161,7 +166,7 @@ const Home: NextPage = () => {
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
           <h2>Your ToyMories</h2>
-          {listNft.map((reptile) => (
+          {listNft.map((reptile: any) => (
           <div key={reptile}>
             <p>{reptile.name}</p>
             <img src={reptile.image.replace('ipfs:/', 'https://ipfs.io/ipfs')}/>
